@@ -19,6 +19,20 @@ class MessagesController {
             return res.status(400).json(error);
         }
     }
+
+    async showByUser(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
+        const messagesService = new MessagesService();
+        
+
+        try{
+            const list = await messagesService.listByUser(id);
+            return res.status(200).json(list);
+        }
+        catch(error){
+            return res.status(400).json(error);
+        }
+    }
 }
 
 export { MessagesController }
