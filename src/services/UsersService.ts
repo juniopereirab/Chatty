@@ -20,6 +20,16 @@ class UsersService {
 
         return user;
     }
+
+    async findByEmail(email: string) {
+        const userExists = await this.usersRepository.findOne({email});
+        
+        if(!userExists){
+            return false;
+        }
+
+        return userExists;
+    }
 }
 
 export { UsersService }
